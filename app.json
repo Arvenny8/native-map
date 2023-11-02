@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": " ทองก้อน",
+    "slug": "ทองก้อน",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/logothong.png",
+    "userInterfaceStyle": "Dark",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logothong.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#22272B"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/logothong.png",
+        "backgroundColor": "#22272B"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logothong.png"
     }
   }
 }
