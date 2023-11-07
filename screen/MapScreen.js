@@ -1,54 +1,48 @@
-import React from "react";
-import MapView, { Callout, Marker } from "react-native-maps";
-import { StyleSheet, View, Text, Image } from "react-native";
 
-const data = [
-  {
-    lat: 13.7563,
-    lon: 100.5018,
-    tex: "PTT01",
-  },
-  {
-    lat: 13.7503,
-    lon: 100.525,
-    tex: "OOP02",
-  },
-  {
-    lat: 13.7553,
-    lon: 100.52,
-    tex: "OOP03",
-  },
-];
+import React, { useState } from 'react';
+import { View, Text, StyleSheet , TouchableOpacity } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
-export default function MapScreen({ navigation }) {
+function MapScreen() {
+  const [markerInfo, setMarkerInfo] = useState(null);
+
+  const markers = [
+    { id: 1, title: 'Mint Tower', discription : "ห้องน้ำสะอาด", rating : "4.9", coordinate: { latitude: 13.7563, longitude: 100.5018 } },
+    { id: 2, title: 'Solfware Park' , discription : "ห้องน้ำสะอาด", rating : "3.7", coordinate: { latitude: 13.7503, longitude: 100.525 } },
+    { id: 3, title: 'TEEPK' , discription : "ห้องน้ำสะอาด", rating : "5", coordinate: { latitude: 13.7553 , longitude: 100.52 } },
+  ];
+
+  const handleMarkerPress = (marker) => {
+    setMarkerInfo(marker);
+  };
+
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: 13.7563,
+      <MapView style={styles.map} initialRegion={{ latitude: 13.7563,
           longitude: 100.5018,
           latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      >
-        {data.map((item, index) => (
+          longitudeDelta: 0.0421,}}>
+        {markers.map((marker) => (
           <Marker
-            key={index}
-            coordinate={{ latitude: item.lat, longitude: item.lon }}
-          >
-            <Callout onPress={() => navigation.navigate("MapDetail")}>
-              <View>
-                <Text>{item.tex}</Text>
-              </View>
-              <Image
-                source={require("../assets/img/toilet.jpg")}
-                style={{ width: 150, height: 150, zIndex: 1 }}
-              />
-            </Callout>
-          </Marker>
+            key={marker.id}
+            coordinate={marker.coordinate}
+            title={marker.title}
+            onPress={() => handleMarkerPress(marker)}
+          />
         ))}
       </MapView>
+      {markerInfo && (
+        <View style={styles.markerInfo}>
+          <Text style={{color :"#FBBB00", fontSize: 24 , fontWeight:500 , paddingTop :36 , paddingLeft : 36 }}>{markerInfo.title}</Text>
+          <Text style={{color :"#D3D3D3", fontSize: 16 , fontWeight:500 , paddingLeft :36}}>{markerInfo.discription}</Text>
+          <Text style={{color :"#D3D3D3", fontSize: 16 , fontWeight:500 , paddingLeft :36}}>{markerInfo.rating}</Text>
+          <View style={{ display : "flex" , justifyContent : "center", alignItems : "center"}}>
+          <TouchableOpacity style={{backgroundColor : "#FBBB00" , alignItems : "center", justifyContent : "center"  , width :350  , height : 60 , borderRadius : 16 , marginTop : 48 }}>
+            <Text style={{fontSize : 20 , fontWeight : 500 , color :"#22272B"}}>ดูรายระเอียด</Text>
+          </TouchableOpacity>
+          </View>
+        </View>
+      )} 
     </View>
   );
 }
@@ -58,16 +52,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   map: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
   },
-  // bubble: {
-  //   flexDirection: "row",
-  //   alignSelf: "flex-start",
-  //   backgroundColor: "#fff",
-  //   borderRadius: 6,
-  //   borderColor: "#ccc",
-  //   borderWidth: 16,
-  //   alignSelf: "center",
-  // },
+  markerInfo: {
+    position: 'absolute',
+    bottom: 0,
+    borderTopLeftRadius : 32 ,
+    borderTopRightRadius : 32 , 
+    width:390,
+    height : 281 ,
+    backgroundColor: '#1D2022',
+    
+  },
 });
+
+export default MapScreen;
