@@ -20,7 +20,7 @@ const data = [
   },
 ];
 
-export default function MapScreen() {
+export default function MapScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <MapView
@@ -37,8 +37,8 @@ export default function MapScreen() {
             key={index}
             coordinate={{ latitude: item.lat, longitude: item.lon }}
           >
-            <Callout>
-              <View >
+            <Callout onPress={() => navigation.navigate("MapDetail")}>
+              <View>
                 <Text>{item.tex}</Text>
               </View>
               <Image
@@ -69,5 +69,5 @@ const styles = StyleSheet.create({
   //   borderColor: "#ccc",
   //   borderWidth: 16,
   //   alignSelf: "center",
-  // }, 
+  // },
 });
