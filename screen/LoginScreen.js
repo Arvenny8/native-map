@@ -1,7 +1,9 @@
 import { View, Text , StyleSheet , Image  , TouchableOpacity} from 'react-native'
 import React from 'react'
 
+
 export default function LoginScreen({navigation}) {
+ 
   return (
     <View style={styles.main}>
     {/* ///////////////////// Top ///////////////////////*/}
@@ -10,7 +12,7 @@ export default function LoginScreen({navigation}) {
     style={{width : 193.791 , height :136.423}}
     />
     <View style={{display : "flex", flexDirection : 'row'}}>
-      <Text style={{fontSize : 33.581, color : "#FFBE00"  }}>ทอง</Text>
+      <Text style={{fontSize : 33.581, color : "#FFBE00" , fontFamily :"Chonburi" }}>ทอง</Text>
       <Text style={{fontSize : 33.581, color : "#FFF"}}>ก้อน</Text>
     </View>
     </View>
@@ -40,11 +42,15 @@ export default function LoginScreen({navigation}) {
       onPress={() => navigation.navigate('Map')}
       style={{ width :350 , height : 60, borderRadius:16, borderColor : "#BBB" , borderWidth : 1 , borderStyle : 'solid' , alignItems : "center", justifyContent : "center"}}>
     <Text style={{color : "#D3D3D3" , fontSize : 20}}>เข้าสู่ระบบในฐานะบุคคลทั่วไป</Text>
-       
       </TouchableOpacity>
-      <View style={{ width :350 , height : 60, borderRadius:16 , backgroundColor : "#FBBB00", alignItems : "center", justifyContent : "center"}}>
-        <Text style={{fontSize :20, color : "#22272B"}}>เข้าสู่ระบบ</Text>
-      </View>
+
+     <TouchableOpacity
+      onPress={() => navigation.navigate("Map")}
+      style={{ width :350 , height : 60, borderRadius:16 , backgroundColor : "#FBBB00", alignItems : "center", justifyContent : "center"}}>
+      <Text style={{fontSize :20, color : "#22272B"}}>เข้าสู่ระบบ</Text>
+     </TouchableOpacity>
+
+      
     </View>
     </View>
   )
@@ -55,6 +61,7 @@ const styles = StyleSheet.create({
   main: {
     height:"100%",
     backgroundColor:"#22272B", 
+    fontFamily : "Chonburi-Regular.ttf"
   },
 
   top: {
